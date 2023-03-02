@@ -1,12 +1,11 @@
 export interface Account {
-  account_id: number;
-  type: string;
-  amount: number;
+  id: string;
+  balance: number;
 }
 
-// interface Transaction {
-//   type: "withdraw" | "deposit" | "transfer";
-//   destination: number;
-//   origin: number;
-//   amount: number;
-// }
+export interface Transaction {
+  type?: "withdraw" | "deposit" | "transfer";
+  destination: string;
+  origin?: string;
+  amount: number;
+}

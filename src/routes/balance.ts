@@ -1,20 +1,22 @@
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
-import { balance } from "../app";
+import { accounts } from "../app";
 
 export async function balanceRoutes(app: FastifyInstance) {
   const getBalanceSchema = z.object({
-    account_id: z.number(),
+    account_id: z.string(),
   });
 
   app.get("/", (request, reply) => {
-    const { success } = getBalanceSchema.safeParse(request.body);
-    console.log(request.query);
-    if (success) {
+    try {
+      const { account_id } = getBalanceSchema.parse(request.query);
+      const accountBalance = accounts.findIndex(item => item.id === account_id);
+      if (accountBalance < 0) return reply.status(404).send(0);
+      console.log(accounts[accountBalance].balance);
+      console.log("++++++++++++++++++++++++++++++++++++++++++");
+      return reply.status(200).send(accounts[accountBalance].balance);
+    } catch (error) {
       return reply.status(404).send(0);
     }
-    const { account_id } = getBalanceSchema.parse(request.body);
-    balance.find(item => item.account_id === account_id);
-    return reply.status(200).send(balance);
   });
 }
