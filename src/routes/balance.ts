@@ -12,8 +12,6 @@ export async function balanceRoutes(app: FastifyInstance) {
       const { account_id } = getBalanceSchema.parse(request.query);
       const accountBalance = accounts.findIndex(item => item.id === account_id);
       if (accountBalance < 0) return reply.status(404).send(0);
-      console.log(accounts[accountBalance].balance);
-      console.log("++++++++++++++++++++++++++++++++++++++++++");
       return reply.status(200).send(accounts[accountBalance].balance);
     } catch (error) {
       return reply.status(404).send(0);

@@ -115,8 +115,11 @@ describe("Event routes", () => {
     const postEventTransfer = await request(app.server)
       .post("/event")
       .send({ type: "transfer", origin: "100", amount: 15, destination: "300" })
-      .expect(404);
-    expect(postEventTransfer.body).toEqual(0);
+      .expect(201);
+    expect(postEventTransfer.body).toEqual({
+      origin: { id: "100", balance: 0 },
+      destination: { id: "300", balance: 15 },
+    });
   });
 
   // # Transfer from non-existing account

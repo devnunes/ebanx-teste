@@ -60,10 +60,24 @@ export async function eventRoutes(app: FastifyInstance) {
           account => account.id === origin
         );
         if (accountOrigin < 0) return reply.status(404).send(0);
+        if (destination === undefined) return reply.status(404).send();
+
         const accountDestination = accounts.findIndex(
           account => account.id === destination
         );
-        if (accountDestination < 0) return reply.status(404).send(0);
+        if (accountDestination < 0) {
+          transaction.withdraw(accountOrigin, amount);
+          accounts.push({ id: destination, balance: amount });
+
+          const amountDeposited = accounts.findIndex(
+            item => item.id === destination
+          );
+
+          return reply.status(201).send({
+            origin: accounts[accountOrigin],
+            destination: accounts[amountDeposited],
+          });
+        }
 
         transaction.withdraw(accountOrigin, amount);
         transaction.deposit(accountDestination, amount);
