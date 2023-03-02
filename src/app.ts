@@ -1,11 +1,11 @@
 import fastify from "fastify";
-import { Account } from "./global";
+import { IAccount } from "./global";
 import { eventRoutes } from "./routes/event";
 import { balanceRoutes } from "./routes/balance";
 
 export const app = fastify();
 
-export const accounts = [] as Account[];
+export const accounts = [] as IAccount[];
 
 app.register(eventRoutes, { prefix: "event" });
 app.register(balanceRoutes, { prefix: "balance" });

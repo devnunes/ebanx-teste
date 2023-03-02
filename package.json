@@ -6,7 +6,7 @@
   "author": "mnunes <matheusnunesinfo@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "dependencies": {
     "fastify": "^4.13.0",

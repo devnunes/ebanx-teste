@@ -35,8 +35,8 @@ describe("Event routes", () => {
   it("Deposit into existing account", async () => {
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "100", amount: 10 })
-      .expect(201);
+      .send({ type: "deposit", destination: "100", amount: 10 });
+
     const postEventDeposit = await request(app.server)
       .post("/event")
       .send({ type: "deposit", destination: "100", amount: 10 })
@@ -52,8 +52,7 @@ describe("Event routes", () => {
   it("Withdraw from existing account", async () => {
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "100", amount: 20 })
-      .expect(201);
+      .send({ type: "deposit", destination: "100", amount: 20 });
 
     const postEventWithdraw = await request(app.server)
       .post("/event")
@@ -70,8 +69,8 @@ describe("Event routes", () => {
   it("Withdraw from non-existing account", async () => {
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "100", amount: 20 })
-      .expect(201);
+      .send({ type: "deposit", destination: "100", amount: 20 });
+
     const postEventWithdraw = await request(app.server)
       .post("/event")
       .send({ type: "withdraw", origin: "200", amount: 10 })
@@ -85,18 +84,17 @@ describe("Event routes", () => {
   it("Transfer from existing account to existing account", async () => {
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "100", amount: 15 })
-      .expect(201);
+      .send({ type: "deposit", destination: "100", amount: 15 });
 
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "300", amount: 0 })
-      .expect(201);
+      .send({ type: "deposit", destination: "300", amount: 0 });
 
     const postEventTransfer = await request(app.server)
       .post("/event")
       .send({ type: "transfer", origin: "100", amount: 15, destination: "300" })
       .expect(201);
+
     expect(postEventTransfer.body).toEqual({
       origin: { id: "100", balance: 0 },
       destination: { id: "300", balance: 15 },
@@ -109,13 +107,13 @@ describe("Event routes", () => {
   it("Transfer from existing account", async () => {
     await request(app.server)
       .post("/event")
-      .send({ type: "deposit", destination: "100", amount: 15 })
-      .expect(201);
+      .send({ type: "deposit", destination: "100", amount: 15 });
 
     const postEventTransfer = await request(app.server)
       .post("/event")
       .send({ type: "transfer", origin: "100", amount: 15, destination: "300" })
       .expect(201);
+
     expect(postEventTransfer.body).toEqual({
       origin: { id: "100", balance: 0 },
       destination: { id: "300", balance: 15 },
