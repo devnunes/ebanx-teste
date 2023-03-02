@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "mnunes <matheusnunesinfo@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "fastify": "^4.13.0",
     "zod": "^3.20.6"
