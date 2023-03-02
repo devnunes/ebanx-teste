@@ -103,6 +103,4 @@ ngrok http 3333
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- Learned to use fastify, it's really easy.
