@@ -27,53 +27,71 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+A list of what you gonna need to install to run this project.
+
+- Node
+
+  [Here](https://www.alura.com.br/artigos/como-instalar-node-js-windows-linux-macos?gclid=CjwKCAiAr4GgBhBFEiwAgwORraCEtHblYqXAsMSmUAfUL2KFN7_n3H9yldAZZLz4m6Kbo3xrkxdl2xoC8XgQAvD_BwE) a tutorial to install node in your favorite OS.
+
+- Yarn
+
+  With Node instalation now you have npm use to install yarn:
 
 ```
-Give examples
+npm install --global yarn
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+After cloning this repository in your machine.
+You will need to access the folder with your terminal and run this comands:
 
 ```
-until finished
+yarn install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+```
+yarn dev
+```
+
+The message in console "HTTP Server running!" its a sign that's evrything it's running.
+Good hacking.
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-Explain how to run the automated tests for this system.
+To run automated tests, run this code in the terminal:
+
+```
+yarn test
+```
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
+These tests wil test the business login in the aplication.
 
 ### And coding style tests
 
-Explain what these tests test and why
+Eslint and Prettier will work together to mantain the code style and pattern for a nice apresentation.
 
 ```
-Give an example
+yarn lint
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+To deploy this aplication on the internet, you can use ngrok.
+Install ngrok agent, [here](https://ngrok.com/docs/getting-started), you can jump to step 2 directly and go until step 4.
+Before you run the step 4, make sure of the aplication is running with:
+
+```
+yarn dev
+```
+
+And then
+
+```
+ngrok http 3333
+```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
