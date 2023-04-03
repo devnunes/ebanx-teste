@@ -69,7 +69,7 @@ class AccountController {
       }
     } catch (error) {
       console.error(error);
-      return reply.status(404).send(error);
+      return reply.status(404).send(0);
     }
   }
 }

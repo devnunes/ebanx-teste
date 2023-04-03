@@ -63,6 +63,22 @@ describe("Event routes", () => {
     });
   });
 
+  // # Withdraw from existing account without enough balance
+  // - POST 201 /event {"type":"withdraw", "origin":"100", "amount":5}
+  // {"origin": {"id":"100", "balance":15}}
+  it("Withdraw from existing account without enough balance", async () => {
+    await request(app.server)
+      .post("/event")
+      .send({ type: "deposit", destination: "100", amount: 20 });
+
+    const postEventWithdraw = await request(app.server)
+      .post("/event")
+      .send({ type: "withdraw", origin: "100", amount: 25 })
+      .expect(404);
+
+    expect(postEventWithdraw.body).toEqual(0);
+  });
+
   // # Withdraw from non-existing account
   // - POST 404 /event {"type":"withdraw", "origin":"200", "amount":10}
   // 0
